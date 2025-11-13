@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Banco Sintático - Prova50</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f6f7; padding: 30px; }
+        h1 { color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background: #2c3e50; color: white; }
+        tr:nth-child(even) { background: #ecf0f1; }
+    </style>
+</head>
+<body>
+    <h1>Banco de Orações Subordinadas</h1>
+
+    <h2>Orações Principais</h2>
+    <ul>
+        {% for o in oracoes %}
+            <li>{{ o.oracao }}</li>
+        {% empty %}
+            <li>Nenhuma oração principal cadastrada.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Orações Subordinadas</h2>
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>Oração</th>
+            <th>Função Sintática</th>
+            <th>Principal</th>
+        </tr>
+        {% for s in subordinadas %}
+        <tr>
+            <td>{{ s.nome_tipo }}</td>
+            <td>{{ s.oracao }}</td>
+            <td>{{ s.fk_funcao_sintatica.nome }}</td>
+            <td>{{ s.fk_oracao_principal.oracao }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">Nenhuma oração subordinada cadastrada.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
